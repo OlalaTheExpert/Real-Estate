@@ -172,6 +172,9 @@ if(!isset($_SESSION["user"]))
 
 		</div>
 	</div>
+
+
+
 	<div class="left-side-bar">
 	<div class="brand-logo" style=" margin-top: 1rem;" >
 			<a href="dashboard.php">
@@ -187,7 +190,7 @@ if(!isset($_SESSION["user"]))
 			<div class="sidebar-menu">
             <ul id="accordion-menu">
 					
-						
+					
 					
 					<li>
 						<a href="home.php" class="dropdown-toggle no-arrow">

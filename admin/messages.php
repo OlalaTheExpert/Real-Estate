@@ -172,6 +172,8 @@ if(!isset($_SESSION["user"]))
 
 		</div>
 	</div>
+
+
 	<div class="left-side-bar">
 	<div class="brand-logo" style=" margin-top: 1rem;" >
 			<a href="dashboard.php">
@@ -186,9 +188,8 @@ if(!isset($_SESSION["user"]))
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
             <ul id="accordion-menu">
-					
-						
-					
+
+
 					<li>
 						<a href="home.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
@@ -199,41 +200,36 @@ if(!isset($_SESSION["user"]))
 								<span class="micon dw dw-tool"></span><span class="mtext">Properties</span>
 							</a>
 						</li>
-					
-						<li>
-							<a href="bookings.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-trai"></span><span class="mtext">Requests</span>
-							</a>
-						</li>
+						<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-analyti"></span><span class="mtext">Requests</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="bookings.php">Requests</a></li>
+							<li><a href="approved.php">Approved</a></li>
 							
+						</ul>
+					</li>
+
 						<li>
 							<a href="clients.php" class="dropdown-toggle no-arrow">
 								<span class="micon dw dw-adde"></span><span class="mtext">Clients</span>
 							</a>
-						</li>	
-						<!-- <li>
-							<a href="addproperty.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-roade"></span><span class="mtext">New Property</span>
-							</a>
-						</li>											 -->
+						</li>
+																
 						<li>
 							<a href="landlords.php" class="dropdown-toggle no-arrow">
 								<span class="micon dw dw-moneye"></span><span class="mtext">Landlords</span>
 							</a>
 						</li>
-						<!-- <li>
-							<a href="newclient.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-moneye"></span><span class="mtext">New Client</span>
-							</a>
-						</li>	 -->
 						
 						<li>
 							<a href="messages.php" class="dropdown-toggle no-arrow">
 								<span class="micon dw dw-message"></span><span class="mtext">Messages</span>
 							</a>
 						</li>
-				
-					
+
+
 					<li>
 						<div class="dropdown-divider"></div>
 					</li>
@@ -242,6 +238,7 @@ if(!isset($_SESSION["user"]))
 							<span class="micon dw dw-logout"></span><span class="mtext" style="color:blue; font-weight: bold;">Logout</span>
 						</a>
 					</li>
+
 				</ul>
 			</div>
 		</div>

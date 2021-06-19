@@ -287,7 +287,7 @@ if(!isset($_SESSION["user"]))
 					<div class="clearfix mb-20">
 						<div>
 							<h4 class="text-blue h4"><span id="h4">Approved | Payments </span><span class="pull-right" style="font-size:12px;" id="te"> Total Earnings</span></h4>
-                            <p><span id="p1">Payments done and settled </span><span class="pull-right" style="font-weight:bold;font-size:20px;">Ksh. <?php	echo $sum; ?></span></p>
+                            <p><span id="p1">Issued Properties</span><span class="pull-right" style="font-weight:bold;font-size:20px;">Ksh. <?php	echo $sum; ?></span></p>
 							
                          
                         </div>
@@ -303,14 +303,15 @@ if(!isset($_SESSION["user"]))
 						<table class="table table-striped">
 						<thead>
                                         <tr>
-                                            <th>Name</th>
-											<th>Departure</th>
-                                            <th>Destination</th>
-											<th>Date</th>
-											<th>Phone</th>
-											
-											<th>Seat NO</th>
+                                            <th>Client Name</th>
+											<th>Property Type</th>
 											<th>Price</th>
+                                            <th>Location</th>
+											
+											<th>Capacity</th>
+											<th>Landlord</th>
+											<th>Contact</th>
+											<th>Approved By</th>
 											<th id="th">Print</th>
 
                                         </tr>
@@ -334,10 +335,10 @@ if(!isset($_SESSION["user"]))
                                                     <td>".$row['destination']."</td>
 													<td>".$row['tdate']."</td>
 													<td>".$row['phone']."</td>
-													
+													<td>".$row['fname']."</td>													
 													<td>".$row['selected_seat']."</td>
 													<td>".$row['ttot']."</td>
-													<td><a href=print.php?pid=".$id ." <button class='btn btn-primary' id='btnprint1'> <i class='fa fa-print' ></i> Print</button></td>
+													<td><a href=print.php?pid=".$id ." <button class='btn btn-outline-primary' id='btnprint1'> <i class='fa fa-print' ></i> </button></td>
 													</tr>";
 											}
 											else
@@ -349,10 +350,10 @@ if(!isset($_SESSION["user"]))
 													
 													<td>".$row['tdate']."</td>
 													<td>".$row['phone']."</td>
-													
+													<td>".$row['fname']."</td>
 													<td>".$row['selected_seat']."</td>
 													<td>".$row['ttot']."</td>
-													<td><a href=print.php?pid=".$id ." <button class='btn btn-primary' id='btnprint1'> <i class='fa fa-print' ></i> Print</button></td>
+													<td><a href=print.php?pid=".$id ." <button class='btn btn-outline-primary' id='btnprint1'> <i class='fa fa-print' ></i></button></td>
 													</tr>";
 
 											}
