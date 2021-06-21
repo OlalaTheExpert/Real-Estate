@@ -42,17 +42,6 @@ if(!isset($_SESSION["user"]))
 				}
 
 			?>
-<?php
-
-include('includes/config.php');
-
-session_start();
-if(!isset($_SESSION["user"]))
-{
- header("location:index.php");
-}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -218,7 +207,6 @@ if(!isset($_SESSION["user"]))
 	</div>
 
 
-
 	<div class="left-side-bar">
 	<div class="brand-logo" style=" margin-top: 1rem;" >
 			<a href="dashboard.php">
@@ -233,9 +221,8 @@ if(!isset($_SESSION["user"]))
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
             <ul id="accordion-menu">
-					
-					
-					
+
+
 					<li>
 						<a href="home.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
@@ -246,41 +233,35 @@ if(!isset($_SESSION["user"]))
 								<span class="micon dw dw-tool"></span><span class="mtext">Properties</span>
 							</a>
 						</li>
-					
-						<li>
-							<a href="bookings.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-trai"></span><span class="mtext">Requests</span>
-							</a>
-						</li>
-							
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-libra"></span><span class="mtext">Request</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="bookings.php">Progress</a></li>
+							<li><a href="approved.php">Approved</a></li>
+						</ul>
+					</li> 
+
 						<li>
 							<a href="clients.php" class="dropdown-toggle no-arrow">
 								<span class="micon dw dw-adde"></span><span class="mtext">Clients</span>
 							</a>
-						</li>	
-						<!-- <li>
-							<a href="addproperty.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-roade"></span><span class="mtext">New Property</span>
-							</a>
-						</li>											 -->
+						</li>
+																
 						<li>
 							<a href="landlords.php" class="dropdown-toggle no-arrow">
 								<span class="micon dw dw-moneye"></span><span class="mtext">Landlords</span>
 							</a>
 						</li>
-						<!-- <li>
-							<a href="newclient.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-moneye"></span><span class="mtext">New Client</span>
-							</a>
-						</li>	 -->
 						
 						<li>
 							<a href="messages.php" class="dropdown-toggle no-arrow">
 								<span class="micon dw dw-message"></span><span class="mtext">Messages</span>
 							</a>
 						</li>
-				
-					
+
+
 					<li>
 						<div class="dropdown-divider"></div>
 					</li>
@@ -289,6 +270,7 @@ if(!isset($_SESSION["user"]))
 							<span class="micon dw dw-logout"></span><span class="mtext" style="color:blue; font-weight: bold;">Logout</span>
 						</a>
 					</li>
+
 				</ul>
 			</div>
 		</div>
@@ -299,24 +281,24 @@ if(!isset($_SESSION["user"]))
 			<div class="min-height-200px">
 			
 				<?php
-						include ('db.php');
-						$sql = "select * from payment";
-						$re = mysqli_query($con,$sql);
+						include ('includes/config.php');
+						$sql = "select * from users";
+						$re = mysqli_query($conn,$sql);
 						$c =0;
 						while($row=mysqli_fetch_array($re) )
 						{
 							$c = $c + 1;
 
-
+                     $name = $row['name'];
 								//}
 
 						}
 
 ?>
 <?php
-						include ('db.php');
+						
 						$sql = "select * from payment";
-						$re = mysqli_query($con,$sql);
+						$re = mysqli_query($conn,$sql);
 						$sn =1;
 						while($row=mysqli_fetch_array($re) )
 						{
@@ -329,9 +311,9 @@ if(!isset($_SESSION["user"]))
 						?>
 
 						<?php
-						include ('db.php');
+						
 						$sql = "select * from routes";
-						$re = mysqli_query($con,$sql);
+						$re = mysqli_query($conn,$sql);
 						$pr=0;
 					    while($row=mysqli_fetch_array($re) )
 						{
@@ -370,42 +352,42 @@ if(!isset($_SESSION["user"]))
 
                                         </tr>
                                         <tr>
-                                            <th>Name</th>
-                                            <th><?php echo $fname .$lname; ?> </th>
+                                            <th>Client Name</th>
+                                            <th><?php echo $name ; ?> </th>
 
                                         </tr>
 										<tr>
-                                            <th>Email</th>
+                                            <th>Property_Type</th>
                                             <th><?php echo $email; ?> </th>
 
                                         </tr>
 										<tr>
-                                            <th>Age </th>
+                                            <th>Property_Cost </th>
                                             <th><?php echo $age; ?></th>
 
                                         </tr>
 										<tr>
-                                            <th>Phone NO </th>
+                                            <th>Location </th>
                                             <th><?php echo $phone;  ?></th>
 
                                         </tr>
 										<tr>
-                                            <th>Gender </th>
+                                            <th>Landlord</th>
                                             <th><?php echo $gender; ?></th>
 
                                         </tr>
 										<tr>
-                                            <th>Departure </th>
+                                            <th>Landlord Number </th>
                                             <th><?php echo $dept; ?></th>
 
                                         </tr>
 										<tr>
-                                            <th>Destination </th>
+                                            <th>Client Contact </th>
                                             <th><?php echo $dest; ?></th>
 
                                         </tr>
 										<tr>
-                                            <th>Travelling Date </th>
+                                            <th>Approved By </th>
                                             <th><?php echo $tdate; ?></th>
 
                                         </tr>
@@ -415,7 +397,7 @@ if(!isset($_SESSION["user"]))
                                             <th><?php echo $com; ?></th>
 
                                         </tr>
-										<tr>
+										<!-- <tr>
                                             <th>Comm. Channel</th>
                                             <th><?php echo $selected_seat; ?></th>
 
@@ -424,7 +406,7 @@ if(!isset($_SESSION["user"]))
                                             <th>Price</th>
                                             <th><?php echo $pr; ?></th>
 
-                                        </tr>
+                                        </tr> -->
 
                                 </table>
                             </div>
@@ -505,20 +487,19 @@ if(!isset($_SESSION["user"]))
 										if( $st=="Conform")
 											{
 												
-												$update = "UPDATE `bookings` SET `stat` = 0 WHERE id = $id";
+												$update = "UPDATE `house` SET `status` = 'Booked' WHERE house_id = $id";
 
 												if(mysqli_query($con, $update)){
 													echo 'Success';
 												}
 											}
 
-												$sql = "INSERT INTO `payment`(`fname`, `lname`, `gender`, `departure`, `destination`, `phone`, `email`, `tdate`, `ttot`, `selected_seat` )
-														VALUES ('$fname','$lname','$gender','$dept','$dest', '$phone','$email','$tdate', '$pr', '$selected_seat')";
+												$sql = "INSERT INTO `approved`(`name`, `property_type`, `property_cost`, `location`, `landlord`, `landlord_phone`, `contact`, `Approved_By` )
+														VALUES ('$name','$property_type','$property_cost','$location','$landlord', '$landlord_phone','$contact','$Approved_By')";
 
 														if(mysqli_query($con,$sql))
 														{
 															
-
 															//echo "<script type='text/javascript'> alert('Booking Conform')</script>";
 															echo "<script type='text/javascript'> window.location='payment.php'</script>";
 
@@ -535,7 +516,7 @@ if(!isset($_SESSION["user"]))
 
 					}
 
-				}
+				
 	
 						?>
 

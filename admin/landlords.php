@@ -265,15 +265,16 @@ if(!isset($_SESSION["user"]))
 								<tr>
 																	
 								
-								<th scope="col">Property Type</th>
-								
-								<th scope="col">Property Location</th>
-								
-								<th scope="col">Capacity</th>
-								
 								<th scope="col">Name</th>
 								
+								<th scope="col">Email</th>
+								
 								<th scope="col">Contact</th>
+								
+								<th scope="col">Gender</th>
+								
+								<th scope="col">Location</th>
+								
 								<th class="datatable-nosort">Action</th>
 									
 								</tr>
@@ -281,35 +282,39 @@ if(!isset($_SESSION["user"]))
 							<tbody>
 								<?php
 								
-								$select = "SELECT * FROM houses";
+								$select = "SELECT * FROM landlord";
 								$result = $conn->query($select);
 								while($row = $result->fetch_assoc()){
 							
 										
-											$id = $row['house_id'];
+											$id = $row['landlord_id'];
 											
 											if($id % 2 ==1 )
 											{
 												echo"<tr class='gradeC'>
 												
-												<td>".$row['house_type']." </td>													 
+											<td>".$row['fName']." </td>	
+												<td>".$row['email']." </td>	
+												
+												<td>".$row['phonenumber']." </td>
+												<td>".$row['gender']." </td>										 
                                                 <td>".$row['location']."</td>
-                                                <td>".$row['max_capacity']."</td>
-												<td>".$row['name']."</td>
-												<td>".$row['contact']."</td>
-                                                <th><a href='approve.php?rid=".$row['house_id']." ' class='btn btn-outline-danger'>Delete</a></th>
+                                               
+                                                <th><a href='approve.php?rid=".$row['landlord_id']." ' class='btn btn-outline-danger'>Delete</a></th>
 												</tr>";
 											}
 											else
 											{
 												echo"<tr class='gradeU'>
 												
-												<td>".$row['house_type']." </td>													 
+													<td>".$row['fName']." </td>	
+												<td>".$row['email']." </td>	
+												
+												<td>".$row['phonenumber']." </td>
+												<td>".$row['gender']." </td>										 
                                                 <td>".$row['location']."</td>
-                                                <td>".$row['max_capacity']."</td>
-												<td>".$row['name']."</td>
-												<td>".$row['contact']."</td>
-                                                <th><a href='approve.php?rid=".$row['house_id']." ' class='btn btn-outline-danger'>Delete</a></th>
+                                               
+                                                <th><a href='approve.php?rid=".$row['landlord_id']." ' class='btn btn-outline-danger'>Delete</a></th>
 												</tr>";
 											
 											}

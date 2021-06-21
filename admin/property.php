@@ -200,16 +200,15 @@ if(!isset($_SESSION["user"]))
 								<span class="micon dw dw-tool"></span><span class="mtext">Properties</span>
 							</a>
 						</li>
-						<li class="dropdown">
+					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-analyti"></span><span class="mtext">Requests</span>
+							<span class="micon dw dw-libra"></span><span class="mtext">Request</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="bookings.php">Requests</a></li>
+							<li><a href="bookings.php">Progress</a></li>
 							<li><a href="approved.php">Approved</a></li>
-							
 						</ul>
-					</li>
+					</li> 
 
 						<li>
 							<a href="clients.php" class="dropdown-toggle no-arrow">

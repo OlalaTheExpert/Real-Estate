@@ -319,9 +319,9 @@ if(!isset($_SESSION["user"]))
                                     <tbody>
 
 									<?php
-										include ('db.php');
-										$sql="select * from payment";
-										$re = mysqli_query($con,$sql);
+										include ('includes/config.php');
+										$sql="select * from approved";
+										$re = mysqli_query($conn,$sql);
 										while($row = mysqli_fetch_array($re))
 										{
 
@@ -330,30 +330,29 @@ if(!isset($_SESSION["user"]))
 											if($id % 2 ==1 )
 											{
 												echo"<tr class='gradeC'>
-													<td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
-													<td>".$row['departure']."</td>
-                                                    <td>".$row['destination']."</td>
-													<td>".$row['tdate']."</td>
-													<td>".$row['phone']."</td>
-													<td>".$row['fname']."</td>													
-													<td>".$row['selected_seat']."</td>
-													<td>".$row['ttot']."</td>
+													<td>".$row['name']." ".$row['fname']." ".$row['lname']."</td>
+													<td>".$row['property_type']."</td>
+                                                    <td>".$row['property_cost']."</td>
+													<td>".$row['location']."</td>
+													<td>".$row['landlord']."</td>
+													<td>".$row['landlord_phone']."</td>													
+													<td>".$row['contact']."</td>
+													<td>".$row['Approved_By']."</td>
 													<td><a href=print.php?pid=".$id ." <button class='btn btn-outline-primary' id='btnprint1'> <i class='fa fa-print' ></i> </button></td>
 													</tr>";
 											}
 											else
 											{
 												echo"<tr class='gradeU'>
-													<td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
-													<td>".$row['departure']."</td>
-                                                    <td>".$row['destination']."</td>
-													
-													<td>".$row['tdate']."</td>
-													<td>".$row['phone']."</td>
-													<td>".$row['fname']."</td>
-													<td>".$row['selected_seat']."</td>
-													<td>".$row['ttot']."</td>
-													<td><a href=print.php?pid=".$id ." <button class='btn btn-outline-primary' id='btnprint1'> <i class='fa fa-print' ></i></button></td>
+													<td>".$row['name']." ".$row['fname']." ".$row['lname']."</td>
+													<td>".$row['property_type']."</td>
+                                                    <td>".$row['property_cost']."</td>
+													<td>".$row['location']."</td>
+													<td>".$row['landlord']."</td>
+													<td>".$row['landlord_phone']."</td>													
+													<td>".$row['contact']."</td>
+													<td>".$row['Approved_By']."</td>
+													<td><a href=print.php?pid=".$id ." <button class='btn btn-outline-primary' id='btnprint1'> <i class='fa fa-print' ></i> </button></td>
 													</tr>";
 
 											}
