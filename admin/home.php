@@ -245,67 +245,10 @@ if(!isset($_SESSION["user"]))
 	</div>
 	<div class="mobile-menu-overlay"></div>
 
-	<?php
-						include ('db.php');
-						$sql = "select * from message";
-						$re = mysqli_query($con,$sql);
-						$mes =0;
-						while($row=mysqli_fetch_array($re) )
-						{
-							$mes = $mes + 1;
-
-						}
+			}
 						?>
 
 
-
-						<?php
-						include ('db.php');
-						$sql = "select * from bookings";
-						$re = mysqli_query($con,$sql);
-						$book =0;
-						while($row=mysqli_fetch_array($re) )
-						{
-							$book = $book + 1;
-
-						}
-						?>
-
-						<?php
-						include ('db.php');
-						$sql = "select * from payment";
-						$re = mysqli_query($con,$sql);
-						$approve =0;
-						while($row=mysqli_fetch_array($re) )
-						{
-							$approve = $approve + 1;
-
-						}
-						?>
-
-<?php
-						include ('db.php');
-						$sql = "select * from routes";
-						$re = mysqli_query($con,$sql);
-						$routes =0;
-						while($row=mysqli_fetch_array($re) )
-						{
-							$routes = $routes + 1;
-
-						}
-						?>
-						<?php
-						include ('db.php');
-						$sql = "select * from addtrain";
-						$re = mysqli_query($con,$sql);
-						$pr=0;
-					    while($row=mysqli_fetch_array($re) )
-						{
-							$pr = $row['fare'];
-							$tot = $pr * $book;
-
-						}
-                      ?>
 
 
 	<div class="main-container ">
