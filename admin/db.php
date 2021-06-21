@@ -1,4 +1,4 @@
 <?php
-$con = mysqli_connect("localhost","root","","western-train") or die(mysql_error());
+$conn = mysqli_connect("localhost","root","","real") or die(mysql_error());
 
 ?>
