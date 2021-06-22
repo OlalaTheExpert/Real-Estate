@@ -268,7 +268,7 @@ if(!isset($_SESSION["user"]))
 						</div>
 						
 					</div>
-					<form action="#" method="POST">
+					<form action="#" method="POST" enctype="multipart/form-data">
                     <div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="form-group">
@@ -351,10 +351,11 @@ if(!isset($_SESSION["user"]))
 							if(isset($_POST['send'])){
 								
 								$target_path = "../house_images/";
+								$image = basename($_FILES['image']['name']);		
 								$target_path = $target_path . basename ($_FILES['image']['name']);
 								if(move_uploaded_file($_FILES['image']['tmp_name'], $target_path)){
 								
-								$image = basename($_FILES['image']['name']);							
+													
 								
 								
 								$house_type = $_POST['House_type'];
