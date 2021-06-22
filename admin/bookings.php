@@ -117,7 +117,7 @@ if(!isset($_SESSION["user"]))
 									<!-- <i class="dw dw-user1"></i> -->
 									<?php
 
-							  $sql = "SELECT * FROM `message`";
+							  $sql = "SELECT * FROM `houses` WHERE `status` = 'Available' ";
 							  $re = mysqli_query($con,$sql);
 
 										while($row = mysqli_fetch_array($re))

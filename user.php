@@ -144,7 +144,7 @@ if (!isset($_SESSION["email"])) {
             <ul class="properties_list">
                 <?php
                 include 'includes/config.php';
-                $sel = "SELECT * FROM properties";
+                $sel = "SELECT * FROM houses";
                 $rs = $conn->query($sel);
                 while ($rws = $rs->fetch_assoc()) {
 
@@ -155,7 +155,7 @@ if (!isset($_SESSION["email"])) {
             <div class="price-block agile ">
                 <div class="price-gd-top ">
                     <a href="#">
-                        <img class="thumb" src="house_images/<?php echo $rws['image']; ?>">
+                        <img class="thumb" src="house_images/<?php echo $rws['image']; ?>" width="300px" height="300px">
                     </a>
 
 

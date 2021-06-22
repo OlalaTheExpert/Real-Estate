@@ -73,7 +73,7 @@ include('includes/config.php');
 include('includes/config.php');
 if (isset($_GET['id'])) {
   $house_id = $_REQUEST['id'];
-  $sel = "SELECT * FROM properties WHERE house_id = $house_id";
+  $sel = "SELECT * FROM houses WHERE house_id = $house_id";
 
   $rs = $conn->query($sel);
   $rws = $rs->fetch_assoc();
@@ -82,6 +82,8 @@ if (isset($_GET['id'])) {
   $rent = $rws['rent_cost'];
   $capacity = $rws['max_capacity'];
   $location = $rws['location'];
+  $landlord = $rws['name'];
+  $contact = $rws['contact'];
 
 
 
@@ -207,12 +209,12 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="item">
                   <span class="price"><input type="text" name="departure" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
-                  <p class="item-name">Landlord</p>
+                  <p class="item-name">Landlord: <span class="float-right"><strong> <?php echo $landlord; ?></span> </strong></p>
 
                 </div>
                 <div class="item">
                   <span class="price"><input type="text" name="departure" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
-                  <p class="item-name">Contact</p>
+                  <p class="item-name">Contact: <span class="float-right"><strong> <?php echo $contact; ?></span> </strong></p>
 
                 </div>
                 <div class="item">
