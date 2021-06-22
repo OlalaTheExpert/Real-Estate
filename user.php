@@ -144,7 +144,7 @@ if (!isset($_SESSION["email"])) {
             <ul class="properties_list">
                 <?php
                 include 'includes/config.php';
-                $sel = "SELECT * FROM houses";
+                $sel = "SELECT * FROM houses WHERE status = 'Available'";
                 $rs = $conn->query($sel);
                 while ($rws = $rs->fetch_assoc()) {
 

@@ -20,7 +20,7 @@ if(!isset($_SESSION["user"]))
 
 
 				$sql ="Select * from bookings where id = '$id'";
-				$re = mysqli_query($con,$sql);
+				$re = mysqli_query($conn,$sql);
 				while($row=mysqli_fetch_array($re))
 				{
 					//$title = $row['Title'];
@@ -296,33 +296,25 @@ if(!isset($_SESSION["user"]))
 
 ?>
 <?php
+
 						
-						$sql = "select * from payment";
-						$re = mysqli_query($conn,$sql);
-						$sn =1;
-						while($row=mysqli_fetch_array($re) )
+						$sql = "SELECT * FROM userbook WHERE house_id = '$id' ";
+						$re = mysqli_query($conn, $sql);
+				
+						while($row = $re -> fetch_assoc() )
 						{
-							$sn = $sn + 1;
+							$type = $row['property_type'];
+							$rent = $row['price'];
+							$location = $row['location'];
+							$landlord = $row['landlord'];
+							$phone = $row['contact'];
+							$client = $row['phone'];
+							
 
 
-								//}
-
-						}
 						?>
 
-						<?php
-						
-						$sql = "select * from routes";
-						$re = mysqli_query($conn,$sql);
-						$pr=0;
-					    while($row=mysqli_fetch_array($re) )
-						{
-							$pr = $row['price'];
-							$totl = $pr * $sn;
-
-						}
-                      ?>
-				
+			
 
 
         <div id="page-wrapper">
@@ -358,58 +350,45 @@ if(!isset($_SESSION["user"]))
                                         </tr>
 										<tr>
                                             <th>Property_Type</th>
-                                            <th><?php echo $email; ?> </th>
+                                            <th><?php echo $type; ?> </th>
 
                                         </tr>
 										<tr>
                                             <th>Property_Cost </th>
-                                            <th><?php echo $age; ?></th>
+                                            <th><?php echo $rent; ?></th>
 
                                         </tr>
 										<tr>
                                             <th>Location </th>
-                                            <th><?php echo $phone;  ?></th>
+                                            <th><?php echo $location;  ?></th>
 
                                         </tr>
 										<tr>
                                             <th>Landlord</th>
-                                            <th><?php echo $gender; ?></th>
+                                            <th><?php echo $landlord; ?></th>
 
                                         </tr>
 										<tr>
                                             <th>Landlord Number </th>
-                                            <th><?php echo $dept; ?></th>
+                                            <th><?php echo $phone; ?></th>
 
                                         </tr>
 										<tr>
                                             <th>Client Contact </th>
-                                            <th><?php echo $dest; ?></th>
+                                            <th><?php echo $client; ?></th>
 
                                         </tr>
 										<tr>
                                             <th>Approved By </th>
-                                            <th><?php echo $tdate; ?></th>
+                                            <th><?php echo $_SESSION["user"]; ?></th>
 
                                         </tr>
 
-										<tr>
-                                            <th>Comm. Channel</th>
-                                            <th><?php echo $com; ?></th>
-
-                                        </tr>
-										<!-- <tr>
-                                            <th>Comm. Channel</th>
-                                            <th><?php echo $selected_seat; ?></th>
-
-                                        </tr>
-										<tr>
-                                            <th>Price</th>
-                                            <th><?php echo $pr; ?></th>
-
-                                        </tr> -->
 
                                 </table>
                             </div>
+
+							<?php } ?>
 
 
 
@@ -476,8 +455,6 @@ if(!isset($_SESSION["user"]))
 </html>
 
 <?php
-
-
 					if(isset($_POST['co']))
 						{
 							$st = $_POST['conf'];
@@ -487,36 +464,33 @@ if(!isset($_SESSION["user"]))
 										if( $st=="Conform")
 											{
 												
-												$update = "UPDATE `house` SET `status` = 'Booked' WHERE house_id = $id";
+												$update = "UPDATE `houses` SET `status` = 'Settled' WHERE house_id = $id";
 
-												if(mysqli_query($con, $update)){
+												if(mysqli_query($conn, $update)){
 													echo 'Success';
 												}
 											}
 
-												$sql = "INSERT INTO `approved`(`name`, `property_type`, `property_cost`, `location`, `landlord`, `landlord_phone`, `contact`, `Approved_By` )
-														VALUES ('$name','$property_type','$property_cost','$location','$landlord', '$landlord_phone','$contact','$Approved_By')";
+												$sql = "UPDATE userbook SET `status` = 'Settled' WHERE house_id = $id";
 
-														if(mysqli_query($con,$sql))
+												$approved_by = $_SESSION['user'];
+
+												echo $approved_by;
+
+												$sql2 = mysqli_query($conn, "UPDATE userbook SET `approved_by` = '$approved_by' WHERE house_id = $id");
+
+														if(mysqli_query($conn,$sql))
 														{
 															
 															//echo "<script type='text/javascript'> alert('Booking Conform')</script>";
-															echo "<script type='text/javascript'> window.location='payment.php'</script>";
-
-
+															echo "<script type='text/javascript'> window.location='bookings.php'</script>";
 
 														}
 
-											
-
-
-							
-
 						}
-
-					}
-
+			
 				
-	
-						?>
-
+					}
+				}
+			
+?>
