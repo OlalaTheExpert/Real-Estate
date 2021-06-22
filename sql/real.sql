@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2021 at 11:30 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.5
+-- Generation Time: Jun 22, 2021 at 07:19 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -91,9 +91,13 @@ CREATE TABLE `houses` (
 --
 
 INSERT INTO `houses` (`house_id`, `house_type`, `image`, `rent_cost`, `location`, `location_description`, `max_capacity`, `name`, `contact`, `status`) VALUES
-(32, 'House', 'real7.jpg', 'ksh 120,000', 'Kianjai', 'Good', '4 Rooms', '', 0, 'Available'),
-(34, 'House', 'real6.jpg', 'Ksh 400,000', 'Nyeri', 'Best', '10 Rooms', '', 0, 'Available'),
-(45, 'Office', 'receptionists-5975962_1920.jpg', '96000', 'Thika', 'Alocated along thika Highway', '4', 'Olala', 1234567, 'Added');
+(32, 'House', 'real7.jpg', 'ksh 120,000', 'Kianjai', 'Good', '4 Rooms', 'Landlady', 0, 'Available'),
+(34, 'House', 'real6.jpg', 'Ksh 400,000', 'Nyeri', 'Best', '10 Rooms', 'Landlord', 0, 'Settled'),
+(45, 'Office', 'receptionists-5975962_1920.jpg', '96000', 'Thika', 'Alocated along thika Highway', '4', 'Olala', 1234567, 'Settled'),
+(46, 'Apartments', '9188.jpg', '10000', 'Nairobi, Kenya', 'some place cool and lovely', 'Nairobi', 'Billy Okeyo', 712345678, 'Added'),
+(47, 'Apartments House', '530368.jpg', '10000', 'Nairobi, Kenya', 'some place cool and lovely', 'Nairobi', 'Billy Okeyo', 712345678, 'Settled'),
+(48, 'Apartments', '9188.jpg', '10000', 'Nairobi, Kenya', 'some place cool and lovely', 'Nairobi', 'Billy Okeyo', 712345678, 'Added'),
+(49, 'Apartments', 'wp4364764.jpg', '6000', 'Nairobi, Kenya', 'some place cool and lovely', 'Nairobi', 'Billy Okeyo', 712345678, 'Added');
 
 -- --------------------------------------------------------
 
@@ -213,20 +217,41 @@ INSERT INTO `user` (`user_id`, `fname`, `email`, `id_no`, `phone`, `username`, `
 
 CREATE TABLE `userbook` (
   `userbook_id` int(15) NOT NULL,
+  `house_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `houseid` varchar(15) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `gender` varchar(100) NOT NULL,
+  `phone` varchar(120) NOT NULL,
+  `property_type` varchar(100) NOT NULL,
   `location` varchar(100) NOT NULL,
-  `user_id` varchar(12) NOT NULL,
-  `status` varchar(100) NOT NULL
+  `capacity` varchar(100) NOT NULL,
+  `price` varchar(100) NOT NULL,
+  `landlord` varchar(100) NOT NULL,
+  `contact` varchar(100) NOT NULL,
+  `date` varchar(100) NOT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `approved_by` varchar(250) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `userbook`
 --
 
-INSERT INTO `userbook` (`userbook_id`, `name`, `houseid`, `location`, `user_id`, `status`) VALUES
-(70, 'Victor Kiome', '31', 'Makutano', '6', 'booked'),
-(71, 'Olala', '44', 'testing site', '14', 'booked');
+INSERT INTO `userbook` (`userbook_id`, `house_id`, `user_id`, `name`, `email`, `gender`, `phone`, `property_type`, `location`, `capacity`, `price`, `landlord`, `contact`, `date`, `status`, `approved_by`) VALUES
+(70, 0, 0, 'Victor Kiome', '31', 'Makutano', '6', '', '', '', '', '', '', '', 'booked', NULL),
+(71, 0, 0, 'Olala', '44', 'testing site', '14', '', '', '', '', '', '', '', 'booked', NULL),
+(72, 0, 0, 'Olala', 'olala0101@gmail.com', 'Male', '0765432451', '', '', '', '', '', '', '', 'booked', NULL),
+(73, 0, 0, 'Olala', 'test010101@gmail.com', 'Male', '0765432451', '', '', '', '', '', '', '', 'booked', NULL),
+(74, 0, 0, 'Olala', 'test01@gmail.com', '', '0765432451', '', '', '', '', '', '', '', 'booked', NULL),
+(75, 0, 0, 'Olala', 'test01@gmail.com', '', '0765432451', '', '', '', '', '', '', '', 'booked', NULL),
+(76, 0, 0, 'Olala', 'test01@gmail.com', '', '0765432451', '', '', '', '', '', '', '', 'booked', NULL),
+(77, 0, 0, 'Olala', 'test01@gmail.com', '', '0765432451', '', '', '', '', '', '', '', 'booked', NULL),
+(78, 0, 0, 'Olala', 'test01@gmail.com', '', '0765432451', '', '', '', '', '', '', '', 'booked', NULL),
+(79, 0, 0, 'Olala', 'test01@gmail.com', 'Female', '0765432451', '', '', '', '', '', '', '', 'booked', NULL),
+(80, 47, 0, 'Olala', 'test01@gmail.com', 'Male', '0765432451', '', '', '', '', '', '', '2021/06/22', 'Settled', 'admin'),
+(81, 45, 0, 'Olala', 'test01@gmail.com', 'Female', '0765432451', '', 'Nyeri', '10 Rooms', 'Ksh 400,000', 'Landlord', '0', '2021/06/22', 'Settled', NULL),
+(82, 34, 0, 'Olala', 'test01@gmail.com', '', '0765432451', 'House', 'Nyeri', '10 Rooms', 'Ksh 400,000', 'Landlord', '0', '2021/06/22', 'Settled', NULL);
 
 -- --------------------------------------------------------
 
@@ -344,7 +369,7 @@ ALTER TABLE `hire`
 -- AUTO_INCREMENT for table `houses`
 --
 ALTER TABLE `houses`
-  MODIFY `house_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `house_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `landlord`
@@ -374,7 +399,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `userbook`
 --
 ALTER TABLE `userbook`
-  MODIFY `userbook_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `userbook_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `users`
