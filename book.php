@@ -3,14 +3,12 @@ include('includes/config.php');
 session_start();
 if (!isset($_SESSION["email"])) {
 
-  header("location:login.php");
+  header("location:user.php");
 }
 ?>
 <!DOCTYPE html>
 <html>
-<?php
-include('includes/config.php');
-?>
+
 
 <!DOCTYPE html>
 
@@ -178,50 +176,50 @@ if (isset($_GET['id'])) {
           <!-- <p>Secure a Room with us Now!</p> -->
         </div>
 
-        <form method="POST" action="mail.php">
+        <form method="POST" action="#">
           <div class="col-md-6 col-sm-12">
 
             <!-- <div class="products"> -->
             <div class="products1" style="height:110vh;">
               <h3 class="title" style="padding-top:25px;">Property Details</h3>
               <div class="item">
-                <span class="price"><input type="text" name="departure" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
+                <span class="price"><input type="text" name="property_type" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                 <p class="item-name">Type: <span class="float-right"><strong> <?php echo $type; ?></span> </strong></p>
 
               </div>
               <div class="item">
-                <span class="price"><input type="text" name="departure" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
+                <span class="price"><input type="text" name="location" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                 <p class="item-name">Location: <span class="float-right"><strong> <?php echo $location; ?></span> </strong></p>
 
               </div>
               <div class="item">
 
                 <div class="item">
-                  <span class="price"><input type="text" name="departure" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
+                  <span class="price"><input type="text" name="capacity" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                   <p class="item-name">Capacity: <span class="float-right"><strong> <?php echo $capacity; ?></span> </strong> </p>
 
                 </div>
                 <div class="item">
-                  <span class="price"><input type="text" name="departure" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
+                  <span class="price"><input type="text" name="price" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                   <p class="item-name">Price: <span class="float-right"><strong> <?php echo $rent; ?></span> </strong></p>
                 </div>
                 <div class="item">
-                  <span class="price"><input type="text" name="departure" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
+                  <span class="price"><input type="text" name="landlord" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                   <p class="item-name">Landlord</p>
 
                 </div>
                 <div class="item">
-                  <span class="price"><input type="text" name="departure" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
+                  <span class="price"><input type="text" name="contact" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                   <p class="item-name">Contact</p>
 
                 </div>
                 <div class="item">
-                  <span class="price"><input type="text" name="departure" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
+                  <span class="price"><input type="text" name="date" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                   <p class="item-name">Date: <span class="float-right"><strong> <?php echo date("Y/m/d"); ?></span> </strong></p>
 
                 </div>
-                <input type="text" value="<?php echo $id ?>" name="the_id" hidden style="display:none;">
-              </div>
+               
+                             </div>
             </div>
           </div>
           <div class="col-md-6 col-sm-12">
@@ -233,7 +231,7 @@ if (isset($_GET['id'])) {
                   <div class="form-group col-sm-12">
                     <div class="item">
                       <label for="card-holder">Full Name</label>
-                      <input id="card-holder" type="text" class="form-control" value="<?php echo $name; ?>" name="fname" style="height:45px;" required>
+                      <input id="card-holder" type="text" class="form-control" value="<?php echo $name; ?>" name="name" style="height:45px;" required>
                     </div>
                   </div>
 
@@ -274,7 +272,7 @@ if (isset($_GET['id'])) {
 
                   <div class="form-group col-sm-12">
                     <div class="item">
-                      <button type="submit" name="submit" class="btn btn-primary btn-block" style="height:45px; background-color:#14ff27;text-shadow: 0px 1px 3px #454a47; font-size:20px;">BOOK NOW</button>
+                      <button type="submit" name="book" class="btn btn-primary btn-block" style="height:45px; background-color:#14ff27;text-shadow: 0px 1px 3px #454a47; font-size:20px;">BOOK NOW</button>
                     </div>
                   </div>
                 </div>
@@ -399,5 +397,36 @@ if (isset($_GET['id'])) {
 
 </html>
 <?php
-
-?>
+if(isset($_POST['book'])){
+							include 'includes/config.php';
+							$name = $_POST['name'];
+							$email = $_POST['email'];
+							$gender = $_POST['gender'];
+							$phone = $_POST['phone'];																				
+							$property_type = $_POST['property_type'];	
+              $location = $_POST['location'];
+              $capacity = $_POST['capacity'];
+              $price = $_POST['price'];
+              $landlord = $_POST['landlord'];	
+              $contact = $_POST['contact'];		
+              $date = $_POST['date'];
+                            // $status = $_POST['status'];		
+						
+							$qry = "INSERT INTO userbook(name, email, gender, phone, property_type, location, capacity, price, landlord, contact, date, status) VALUES ('$name','$email','$gender','$phone','$property_type', '$location','$capacity','$price','$landlord','$contact', '$date', 'booked')";
+							$result=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+							if($result>0){
+                                
+                               	echo "<script type = \"text/javascript\">
+											alert(\"Successfully Booked\");
+											
+											</script>";
+                        }else{
+								echo "<script type = \"text/javascript\">
+											alert(\"Booking Failed. Try Again\");
+											window.location = (\"login.php\")
+											</script>";
+							}
+						}
+						
+					  ?>
+   
