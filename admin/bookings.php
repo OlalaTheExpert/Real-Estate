@@ -117,7 +117,7 @@ if(!isset($_SESSION["user"]))
 									<!-- <i class="dw dw-user1"></i> -->
 									<?php
 
-							  $sql = "SELECT * FROM `message`";
+							  $sql = "SELECT * FROM `houses` WHERE `status` = 'Available' ";
 							  $re = mysqli_query($con,$sql);
 
 										while($row = mysqli_fetch_array($re))
@@ -266,42 +266,26 @@ if(!isset($_SESSION["user"]))
 							<tbody>
 								<?php
 								include 'includes/config.php';
-								$select = "SELECT userbook.houseid,userbook.name,userbook.user_id,houses.house_id,houses.rent_cost,user.fname 
-								FROM userbook LEFT JOIN houses ON userbook.houseid=houses.house_id LEFT JOIN user ON userbook.user_id=user.fname";
 
-								$result = mysqli_query($conn,$select) or die(mysqli_error($conn));
-								while($row = $result->fetch_assoc()){
+								$query = mysqli_query($conn, "SELECT * FROM userbook WHERE status = 'Booked'");
+
+								// $select = "SELECT userbook.house_id,userbook.name,userbook.user_id,houses.house_id,houses.rent_cost,user.fname 
+								// FROM userbook LEFT JOIN houses ON userbook.house_id=houses.house_id LEFT JOIN user ON userbook.user_id=user.fname";
+
+								// $result = mysqli_query($conn,$select) or die(mysqli_error($conn));
+								while($row = $query->fetch_assoc()){
+
+									?>
+									<tr>
 								
-										
-											$id = $row['houseid'];
-											
-											if($id % 2 ==1 )
-											{
-												echo"<tr class='gradeC'>
-												<td>".$row['houseid']." </td>
-												<td>".$row['user_id']." </td>													 
-                                                   
-													<td>".$row['rent_cost']."</td>
-
-													<td>".$row['name']."</td>													
-													<th><a href='approve.php?rid=".$row['house_id']." ' class='btn btn-primary'>Approve</a></th>
-												</tr>";
-											}
-											else
-											{
-												echo"<tr class='gradeU'>
-												<td>".$row['houseid']." </td>
-												<td>".$row['user_id']." </td>													 
-                                                   
-													<td>".$row['rent_cost']."</td>
-
-													<td>".$row['name']."</td>													
-													<th><a href='approve.php?rid=".$row['house_id']." ' class='btn btn-primary'>Approve</a></th>
-												</tr>";								
-												
-											
-											}
-										
+									<td><?php echo $row['house_id']; ?></td>
+									<td><?php echo $row['location']; ?></td>
+									<td><?php echo $row['price']; ?></td>
+									<td><?php echo $row['name']; ?></td>
+									<th><a href='approve.php?rid=<?php echo $row['house_id']; ?> ' class='btn btn-primary'>Approve</a></th>
+									</tr>
+									
+										<?php
 										}
 										
 									?>

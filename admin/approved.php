@@ -3,14 +3,14 @@
 include('includes/config.php');
 
 session_start();
-if(!isset($_SESSION["user"]))
-{
- header("location:index.php");
+if (!isset($_SESSION["user"])) {
+	header("location:index.php");
 }
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
@@ -37,38 +37,44 @@ if(!isset($_SESSION["user"]))
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
 		gtag('js', new Date());
 
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
+
 <body>
 	<style>
-	.content a{
-		color:#17e06b;
-		font-size:12px;
-		letter-spacing: 2px;
-		text-transform: uppercase;
-		font-family: 'Lato', sans-serif;
-		font-weight: bold;
-		text-align:center;
-		padding-top:0px;
-		margin-bottom: 40px;
-	}
-	.content a:hover{
-		color:#ff0202;
-	}
-	.card {
-		border: 1px solid #17e06b;
-	}
+		.content a {
+			color: #17e06b;
+			font-size: 12px;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			font-family: 'Lato', sans-serif;
+			font-weight: bold;
+			text-align: center;
+			padding-top: 0px;
+			margin-bottom: 40px;
+		}
+
+		.content a:hover {
+			color: #ff0202;
+		}
+
+		.card {
+			border: 1px solid #17e06b;
+		}
 	</style>
 
-<div class="header">
-<div class="header-left">
+	<div class="header">
+		<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
-			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search" ></div>
-			<div class="header-search" >
+			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
+			<div class="header-search">
 				<form>
 					<div class="form-group mb-0" style="width:80vh; margin-left:3rem;">
 						<i class="dw dw-search2 search-icon"></i>
@@ -114,39 +120,33 @@ if(!isset($_SESSION["user"]))
 							<ul>
 								<li>
 									<a href="#">
-									<!-- <i class="dw dw-user1"></i> -->
-									<?php
+										<!-- <i class="dw dw-user1"></i> -->
+										<?php
 
-							  $sql = "SELECT * FROM `message`";
-							  $re = mysqli_query($con,$sql);
+										$sql = "SELECT * FROM `message`";
+										$re = mysqli_query($con, $sql);
 
-										while($row = mysqli_fetch_array($re))
-										{
+										while ($row = mysqli_fetch_array($re)) {
 
 											$id = $row['id'];
 
-											if($id % 2 ==1 )
-											{
-												echo"<ul class='gradeC'>
-												<li><h6><i class='dw dw-user1'></i>".$row['name']."</h6>
-												<p>".$row['message']."</li>
+											if ($id % 2 == 1) {
+												echo "<ul class='gradeC'>
+												<li><h6><i class='dw dw-user1'></i>" . $row['name'] . "</h6>
+												<p>" . $row['message'] . "</li>
 												<hr style='color:blue'></hr>
 												</ul>";
-											}
-											else
-											{
-												echo"<ul class='gradeU'>
-												<li><h6><i class='dw dw-user1'></i>".$row['name']."</h6>
-												<p>".$row['message']." </p></li>
+											} else {
+												echo "<ul class='gradeU'>
+												<li><h6><i class='dw dw-user1'></i>" . $row['name'] . "</h6>
+												<p>" . $row['message'] . " </p></li>
 												<hr></hr>
 
 												</ul>";
-
 											}
-
 										}
 
-									?></p>
+										?></p>
 									</a>
 								</li>
 
@@ -159,12 +159,12 @@ if(!isset($_SESSION["user"]))
 
 			<div class="user-info-dropdown" style="margin-right:1rem;">
 				<div class="dropdown" style="font-size: 20px; color: #14ff27; margin-top:.5rem;">
-				<span class="user-name text-capitalize" ><span style="color:white;">Welcome</span>
+					<span class="user-name text-capitalize"><span style="color:white;">Welcome</span>
 						<?php echo $_SESSION["user"]; ?></span>&nbsp;&nbsp;<i class="dw dw-user" style="font-size:25px; color:#14ff27;"></i>
 
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										 -->
+						-->
 						<a class="dropdown-item" href="logout.php"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
@@ -175,11 +175,11 @@ if(!isset($_SESSION["user"]))
 
 
 	<div class="left-side-bar">
-	<div class="brand-logo" style=" margin-top: 1rem;" >
+		<div class="brand-logo" style=" margin-top: 1rem;">
 			<a href="dashboard.php">
-			<!-- <img src="vendors/images/trainlogo1.png" alt="" class="light-logo"> -->
+				<!-- <img src="vendors/images/trainlogo1.png" alt="" class="light-logo"> -->
 
-			CYTONN
+				CYTONN
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -187,7 +187,7 @@ if(!isset($_SESSION["user"]))
 		</div>
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
-            <ul id="accordion-menu">
+				<ul id="accordion-menu">
 
 
 					<li>
@@ -196,38 +196,38 @@ if(!isset($_SESSION["user"]))
 						</a>
 					</li>
 					<li>
-							<a href="property.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-tool"></span><span class="mtext">Properties</span>
-							</a>
-						</li>
-						<li class="dropdown">
+						<a href="property.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-tool"></span><span class="mtext">Properties</span>
+						</a>
+					</li>
+					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon dw dw-analyti"></span><span class="mtext">Requests</span>
 						</a>
 						<ul class="submenu">
 							<li><a href="bookings.php">Requests</a></li>
 							<li><a href="approved.php">Approved</a></li>
-							
+
 						</ul>
 					</li>
 
-						<li>
-							<a href="clients.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-adde"></span><span class="mtext">Clients</span>
-							</a>
-						</li>
-																
-						<li>
-							<a href="landlords.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-moneye"></span><span class="mtext">Landlords</span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="messages.php" class="dropdown-toggle no-arrow">
-								<span class="micon dw dw-message"></span><span class="mtext">Messages</span>
-							</a>
-						</li>
+					<li>
+						<a href="clients.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-adde"></span><span class="mtext">Clients</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="landlords.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-moneye"></span><span class="mtext">Landlords</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="messages.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-message"></span><span class="mtext">Messages</span>
+						</a>
+					</li>
 
 
 					<li>
@@ -244,138 +244,73 @@ if(!isset($_SESSION["user"]))
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-    <div class="main-container">
+	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
-		<?php
-						include ('db.php');
-						$sql = "select * from payment";
-						$re = mysqli_query($con,$sql);
-						$book =0;
-						while($row=mysqli_fetch_array($re) )
-						{
-							$book = $book + 1;
+			<?php
+			$query = mysqli_query($conn, "SELECT * FROM userbook WHERE status = 'Settled'");
 
-						}
-						?>
-						<?php
-						include ('db.php');
-						$sql = "select * from addtrain";
-						$re = mysqli_query($con,$sql);
-						$pr=0;
-					    while($row=mysqli_fetch_array($re) )
-						{
-							$pr = $row['fare'];
-							$tot = $pr * $book;
+			?>
 
-						}
-                      ?>
-					  <?php
-						include ('db.php');
-						$sql = "select ttot from payment";
-						$re = mysqli_query($con,$sql);
-						$sum=0;
-						while($row=mysqli_fetch_array($re) )
-						{
-							$sum+=$row['ttot'];
 
-						}
-						?>
-			
+			<!-- Contextual classes Start -->
+			<div class="pd-20 card-box mb-30">
+				
+				<div class="table table-striped">
 
-				<!-- Contextual classes Start -->
-				<div class="pd-20 card-box mb-30">
-					<div class="clearfix mb-20">
-						<div>
-							<h4 class="text-blue h4"><span id="h4">Approved | Payments </span><span class="pull-right" style="font-size:12px;" id="te"> Total Earnings</span></h4>
-                            <p><span id="p1">Issued Properties</span><span class="pull-right" style="font-weight:bold;font-size:20px;">Ksh. <?php	echo $sum; ?></span></p>
-							
-                         
-                        </div>
-                    </div>
-					
 
-						
-																
-								
-								<div class="table table-striped">
-							
-					
-						<table class="table table-striped">
+					<table class="table table-striped">
 						<thead>
-                                        <tr>
-                                            <th>Client Name</th>
-											<th>Property Type</th>
-											<th>Price</th>
-                                            <th>Location</th>
-											
-											<th>Capacity</th>
-											<th>Landlord</th>
-											<th>Contact</th>
-											<th>Approved By</th>
-											<th id="th">Print</th>
+							<tr>
+								<th>Client Name</th>
+								<th>Property Type</th>
+								<th>Price</th>
+								<th>Location</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+								<th>Capacity</th>
+								<th>Landlord</th>
+								<th>Contact</th>
+								<th>Approved By</th>
+								<th id="th">Print</th>
 
-									<?php
-										include ('includes/config.php');
-										$sql="select * from approved";
-										$re = mysqli_query($conn,$sql);
-										while($row = mysqli_fetch_array($re))
-										{
+							</tr>
+						</thead>
+						<tbody>
 
-											$id = $row['id'];
+							<?php
+							while ($row = $query->fetch_assoc()) {
 
-											if($id % 2 ==1 )
-											{
-												echo"<tr class='gradeC'>
-													<td>".$row['name']." ".$row['fname']." ".$row['lname']."</td>
-													<td>".$row['property_type']."</td>
-                                                    <td>".$row['property_cost']."</td>
-													<td>".$row['location']."</td>
-													<td>".$row['landlord']."</td>
-													<td>".$row['landlord_phone']."</td>													
-													<td>".$row['contact']."</td>
-													<td>".$row['Approved_By']."</td>
-													<td><a href=print.php?pid=".$id ." <button class='btn btn-outline-primary' id='btnprint1'> <i class='fa fa-print' ></i> </button></td>
-													</tr>";
-											}
-											else
-											{
-												echo"<tr class='gradeU'>
-													<td>".$row['name']." ".$row['fname']." ".$row['lname']."</td>
-													<td>".$row['property_type']."</td>
-                                                    <td>".$row['property_cost']."</td>
-													<td>".$row['location']."</td>
-													<td>".$row['landlord']."</td>
-													<td>".$row['landlord_phone']."</td>													
-													<td>".$row['contact']."</td>
-													<td>".$row['Approved_By']."</td>
-													<td><a href=print.php?pid=".$id ." <button class='btn btn-outline-primary' id='btnprint1'> <i class='fa fa-print' ></i> </button></td>
-													</tr>";
+							?>
+								<tr>
 
-											}
+									<td><?php echo $row['name']; ?></td>
+									<td><?php echo $row['property_type']; ?></td>
+									<td><?php echo $row['price']; ?></td>
+									<td><?php echo $row['location']; ?></td>
+									<td><?php echo $row['capacity']; ?></td>
+									<td><?php echo $row['landlord']; ?></td>
+									<td><?php echo $row['contact']; ?></td>
+									<td><?php echo $row['approved_by']; ?></td>
+									<th><a href='approve.php?rid=<?php echo $row['house_id']; ?> ' class='btn btn-primary'>Print</a></th>
+								</tr>
 
-										}
+							<?php
+							}
 
+							?>
+						</tbody>
+					</table>
+					<button class="btn btn-outline-primary" onclick="print()" id="btnprint"><i class="fa fa-download"></i> Generate Report</button>
 
-									?>
-
-                                    </tbody>
-						</table>
-				 <button class="btn btn-outline-primary" onclick="print()" id="btnprint"><i class="fa fa-download"></i> Generate Report</button>
-
-					</div>
 				</div>
-
-</div>
-</div>
-
-			<div class="footer-wrap pd-20 mb-20 card-box" id="footer1">
-				<p>© Copyright WesternTrains. All Rights Reserved</p>
 			</div>
-		
+
+		</div>
+	</div>
+
+	<div class="footer-wrap pd-20 mb-20 card-box" id="footer1">
+		<p>© Copyright WesternTrains. All Rights Reserved</p>
+	</div>
+
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
 	<script src="vendors/scripts/script.min.js"></script>
@@ -394,5 +329,7 @@ if(!isset($_SESSION["user"]))
 	<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
 	<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
 	<!-- Datatable Setting js -->
-	<script src="vendors/scripts/datatable-setting.js"></script></body>
+	<script src="vendors/scripts/datatable-setting.js"></script>
+</body>
+
 </html>

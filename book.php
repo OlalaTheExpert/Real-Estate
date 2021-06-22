@@ -71,7 +71,7 @@ if (!isset($_SESSION["email"])) {
 include('includes/config.php');
 if (isset($_GET['id'])) {
   $house_id = $_REQUEST['id'];
-  $sel = "SELECT * FROM properties WHERE house_id = $house_id";
+  $sel = "SELECT * FROM houses WHERE house_id = $house_id";
 
   $rs = $conn->query($sel);
   $rws = $rs->fetch_assoc();
@@ -80,6 +80,8 @@ if (isset($_GET['id'])) {
   $rent = $rws['rent_cost'];
   $capacity = $rws['max_capacity'];
   $location = $rws['location'];
+  $landlord = $rws['name'];
+  $contact = $rws['contact'];
 
 
 
@@ -176,8 +178,9 @@ if (isset($_GET['id'])) {
           <!-- <p>Secure a Room with us Now!</p> -->
         </div>
 
-        <form method="POST" action="#">
+        <form method="POST" action="submit.php">
           <div class="col-md-6 col-sm-12">
+          <input type="text" class="float-right" value="<?php echo $house_id; ?>" name="house_id" hidden>
 
             <!-- <div class="products"> -->
             <div class="products1" style="height:110vh;">
@@ -185,11 +188,13 @@ if (isset($_GET['id'])) {
               <div class="item">
                 <span class="price"><input type="text" name="property_type" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                 <p class="item-name">Type: <span class="float-right"><strong> <?php echo $type; ?></span> </strong></p>
+                <input type="text" class="float-right" value="<?php echo $type; ?>" name="property_type" hidden>
 
               </div>
               <div class="item">
                 <span class="price"><input type="text" name="location" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                 <p class="item-name">Location: <span class="float-right"><strong> <?php echo $location; ?></span> </strong></p>
+                <input type="text" class="float-right" value="<?php echo $location; ?>" name="location" hidden>
 
               </div>
               <div class="item">
@@ -197,20 +202,23 @@ if (isset($_GET['id'])) {
                 <div class="item">
                   <span class="price"><input type="text" name="capacity" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                   <p class="item-name">Capacity: <span class="float-right"><strong> <?php echo $capacity; ?></span> </strong> </p>
-
+                  <input type="text" class="float-right" value="<?php echo $capacity; ?>" name="capacity" hidden>
                 </div>
                 <div class="item">
                   <span class="price"><input type="text" name="price" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
                   <p class="item-name">Price: <span class="float-right"><strong> <?php echo $rent; ?></span> </strong></p>
+                  <input type="text" class="float-right" value="<?php echo $rent; ?>" name="price" hidden>
                 </div>
                 <div class="item">
                   <span class="price"><input type="text" name="landlord" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
-                  <p class="item-name">Landlord</p>
+                  <p class="item-name">Landlord: <span class="float-right"><strong> <?php echo $landlord; ?></span> </strong></p>
+                  <input type="text" class="float-right" value="<?php echo $landlord; ?>" name="landlord" hidden>
 
                 </div>
                 <div class="item">
                   <span class="price"><input type="text" name="contact" value="" readonly class="form-control" style="background-color: transparent; border:0px;"></span>
-                  <p class="item-name">Contact</p>
+                  <p class="item-name">Contact: <span class="float-right"><strong> <?php echo $contact; ?></span> </strong></p>
+                  <input type="text" class="float-right" value="<?php echo $contact; ?>" name="contact" hidden>
 
                 </div>
                 <div class="item">
@@ -272,7 +280,7 @@ if (isset($_GET['id'])) {
 
                   <div class="form-group col-sm-12">
                     <div class="item">
-                      <button type="submit" name="book" class="btn btn-primary btn-block" style="height:45px; background-color:#14ff27;text-shadow: 0px 1px 3px #454a47; font-size:20px;">BOOK NOW</button>
+                      <button type="submit" name="save" class="btn btn-primary btn-block" style="height:45px; background-color:#14ff27;text-shadow: 0px 1px 3px #454a47; font-size:20px;">BOOK NOW</button>
                     </div>
                   </div>
                 </div>
@@ -428,5 +436,6 @@ if(isset($_POST['book'])){
 							}
 						}
 						
-					  ?>
+					 
    
+            ?>

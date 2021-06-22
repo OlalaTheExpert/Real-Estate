@@ -299,8 +299,10 @@ if(!isset($_SESSION["user"]))
 													<td>".$row['location']."</td>
 													<td>".$row['location_description']."</td>
 													<td>".$row['max_capacity']."</td>
-													<td>".$row['status']."</td>
-													<td><img class='thumb' src='../house_images/".$row['image']."' width='100' height='100'></td>
+													<td>".$row['status']."</td>"
+													?>
+													<td><img class='thumb' src="../house_images/<?php echo $row['image']; ?>" width='100' height='100'></td>
+													<?php echo "
 													<td>".$row['name']."</td>
 													<td>".$row['contact']."</td>
 													<th><a href='approve.php?rid=".$row['house_id']." ' class='btn btn-outline-danger'><i class='fa fa-trash'></i></a></th>
